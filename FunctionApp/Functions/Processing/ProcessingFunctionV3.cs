@@ -51,19 +51,19 @@ namespace FunctionApp.Functions.Processing
                     var processedTelemetry = new ProcessedTelemetryMessageModel(telemetryModel, document.Id, driver.Name);
                     
                     // Criminal detection
-                    if (IsCriminal(processedTelemetry))
+                    if (IsCriminal(driver))
                     {
-                        log.LogWarning($"Driver {driver.Name} is a criminal!");
-                        criminals.Add(processedTelemetry);
                         processedTelemetry.IsCriminal = true;
+                        log.LogWarning($"Driver {driver.Name} is a criminal!");
+                        criminals.Add(processedTelemetry);               
                     }
 
                     // Speeding detection
                     if (IsSpeeding(processedTelemetry))
                     {
-                        log.LogWarning($"Driver {driver.Name} is speeding!");
-                        speeding.Add(processedTelemetry);
                         processedTelemetry.IsSpeeding = true;
+                        log.LogWarning($"Driver {driver.Name} is speeding!");
+                        speeding.Add(processedTelemetry);                        
                     }                    
 
                     // return processed data record for storage
@@ -78,9 +78,9 @@ namespace FunctionApp.Functions.Processing
             return null;
         }
 
-        private static bool IsCriminal(ProcessedTelemetryMessageModel message)
+        private static bool IsCriminal(DriverModel driver)
         {
-            return message.IsCriminal;
+            return driver.IsCriminal;
         }
 
         private static bool IsSpeeding(ProcessedTelemetryMessageModel message)

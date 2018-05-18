@@ -16,8 +16,6 @@ namespace FunctionApp.Functions.Processing
         /// </summary>
         /// <param name="telemetryDocuments">Trigger: Incoming telemetry data from change feed</param>
         /// <param name="drivers">Input: Driver information</param>
-        /// <param name="criminals">Output: Criminal processing</param>
-        /// <param name="speeding">Output: Speeding violation processing</param>
         /// <param name="log">Log</param>
         /// <returns>Processed data record</returns>
         [FunctionName("ProcessingFunctionV2")]
@@ -56,17 +54,6 @@ namespace FunctionApp.Functions.Processing
             }
 
             return null;
-        }
-
-        private static bool IsCriminal(ProcessedTelemetryMessageModel message)
-        {
-            return message.IsCriminal;
-        }
-
-        private static bool IsSpeeding(ProcessedTelemetryMessageModel message)
-        {
-            bool isSpeeding = message.OriginalTelemetry.Velocity > 130;
-            return isSpeeding;
         }
     }
 }

@@ -7,5 +7,5 @@ namespace Shared
         public DateTime Timestamp { get; set; }
         public string DeviceId { get; set; }
         public int Velocity { get; set; }
-    }
+    }   
 }

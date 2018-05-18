@@ -14,9 +14,6 @@ namespace FunctionApp.Functions.Processing
         /// Processes incoming telemetry data.
         /// </summary>
         /// <param name="telemetryDocuments">Trigger: Incoming telemetry data from change feed</param>
-        /// <param name="drivers">Input: Driver information</param>
-        /// <param name="criminals">Output: Criminal processing</param>
-        /// <param name="speeding">Output: Speeding violation processing</param>
         /// <param name="log">Log</param>
         /// <returns>Processed data record</returns>
         [FunctionName("ProcessingFunctionV1")]
