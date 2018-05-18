@@ -44,8 +44,7 @@ namespace FunctionApp.Functions.Processing
                     }
 
                     // Create processed data record
-                    var processedTelemetry = new ProcessedTelemetryMessageModel(telemetryModel, document.Id, 
-                        driver.Name, driver.IsCriminal);
+                    var processedTelemetry = new ProcessedTelemetryMessageModel(telemetryModel, document.Id, driver.Name);
                                         
                     // return processed data record for storage
                     return processedTelemetry;

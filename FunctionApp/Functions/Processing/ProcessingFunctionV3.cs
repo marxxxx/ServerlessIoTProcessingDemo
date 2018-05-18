@@ -48,13 +48,14 @@ namespace FunctionApp.Functions.Processing
                     }
 
                     // Create processed data record
-                    var processedTelemetry = new ProcessedTelemetryMessageModel(telemetryModel, document.Id, driver.Name, driver.IsCriminal);
+                    var processedTelemetry = new ProcessedTelemetryMessageModel(telemetryModel, document.Id, driver.Name);
                     
                     // Criminal detection
                     if (IsCriminal(processedTelemetry))
                     {
                         log.LogWarning($"Driver {driver.Name} is a criminal!");
                         criminals.Add(processedTelemetry);
+                        processedTelemetry.IsCriminal = true;
                     }
 
                     // Speeding detection
@@ -62,8 +63,8 @@ namespace FunctionApp.Functions.Processing
                     {
                         log.LogWarning($"Driver {driver.Name} is speeding!");
                         speeding.Add(processedTelemetry);
-                    }
-                    
+                        processedTelemetry.IsSpeeding = true;
+                    }                    
 
                     // return processed data record for storage
                     return processedTelemetry;
