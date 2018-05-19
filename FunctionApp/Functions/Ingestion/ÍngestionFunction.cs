@@ -18,15 +18,15 @@ namespace FunctionApp.Functions.Ingestion
         /// <param name="log">Logger</param>
         /// <returns></returns>
         [FunctionName("IngestionFunction")]
-        public static async Task<HttpResponseMessage> Run(
+        public static HttpResponseMessage Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]TelemetryMessageModel req,
             [DocumentDB("testdb", "telemetry", 
-            ConnectionStringSetting="CosmosDbConnection")]IAsyncCollector<TelemetryMessageModel>documents,
+            ConnectionStringSetting="CosmosDbConnection")]ICollector<TelemetryMessageModel>documents,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            await documents.AddAsync(req);
+            documents.Add(req);
 
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
