@@ -21,7 +21,7 @@ namespace FunctionApp.Functions.Ingestion
         public static HttpResponseMessage Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]TelemetryMessageModel req,
             [DocumentDB("testdb", "telemetry", 
-            ConnectionStringSetting="CosmosDbConnection")]ICollector<TelemetryMessageModel>documents,
+                ConnectionStringSetting="CosmosDbConnection")]ICollector<TelemetryMessageModel> documents,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
